@@ -30,11 +30,15 @@ export default function Home() {
   };
 
   const deleteItem = (id: number) => {
+    const storedData = localStorage.getItem("customerData");
+    const updatedAllData = JSON.parse(storedData as string).filter(
+      (item: any) => Number(item["Tracking ID"]) !== id
+    );
     const updatedData = data.filter(
       (item: any) => Number(item["Tracking ID"]) !== id
     );
     setData(updatedData);
-    saveData(updatedData);
+    saveData(updatedAllData);
   };
 
   const filterData = (

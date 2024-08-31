@@ -11,7 +11,7 @@ export default function PaginationPages({
 }: PaginationPageProps) {
   return (
     <div className="flex items-center justify-center hover:cursor-pointer py-2">
-      {currentPage === 1 && (
+      {currentPage === 1 && numberOfPages !== 1 && (
         <div className="flex items-center justify-center hover:cursor-pointer">
           <p className="rounded-xl p-2 bg-gray-400 mr-3 text-black">
             {currentPage}
@@ -30,8 +30,8 @@ export default function PaginationPages({
             {numberOfPages}
           </p>
         </div>
-      )}
-      {currentPage === numberOfPages && (
+      ) }
+      {currentPage === numberOfPages && numberOfPages !== 1 ? (
         <div className="flex items-center justify-center hover:cursor-pointer">
           <p
             className="rounded-xl p-2 bg-gray-400 mr-3 text-black"
@@ -49,6 +49,10 @@ export default function PaginationPages({
           <p className="rounded-xl p-2 bg-gray-400 mr-3 text-black">
             {currentPage}
           </p>
+        </div>
+      ) : numberOfPages === 1 && (
+        <div className="flex items-center justify-center hover:cursor-pointer">
+          <p className="rounded-xl p-2 bg-gray-400 mr-3 text-black">{1}</p>
         </div>
       )}
       {currentPage !== 1 &&
@@ -101,7 +105,7 @@ export default function PaginationPages({
           >
             {currentPage + 1}
           </p>
-            
+
           <p
             className="rounded-xl p-2 bg-gray-400 mr-3 text-black"
             onClick={() => handlePageChange(numberOfPages)}
